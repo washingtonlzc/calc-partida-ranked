@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Partidas Ranqueadas</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#calcularBtn").click(function(){
+                var vitorias = $("#vitorias").val();
+                var derrotas = $("#derrotas").val();
+
+                $.ajax({
+                    url: 'calc.php',
+                    method: 'POST',
+                    data: {vitorias: vitorias, derrotas: derrotas},
+                    success: function(response){
+                        $("#resultado").html(response);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+    <h2>Calculadora de Partidas Ranqueadas</h2>
+    
+    <label for="vitorias">Vitórias:</label>
+    <input type="text" id="vitorias" name="vitorias">
+    
+    <label for="derrotas">Derrotas:</label>
+    <input type="text" id="derrotas" name="derrotas">
+    
+    <button id="calcularBtn">Calcular</button>
+    
+    <div id="resultado"></div>
+
+</body>
+</html>
